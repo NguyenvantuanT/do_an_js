@@ -1,0 +1,27 @@
+ <!--Sản phẩm   row: chua nhieu san pham 
+ -->
+ {{> header}}
+ <br>
+ <br>
+ <br>
+ <br>
+   <div class="mt-4 ">
+    <div class="row">    
+        {{#each Books}}
+         <div class="col-sm-6 col-lg-4">
+            <div class="card" >
+                <a href="detailsbook/{{this.slug}}">
+                 <img src="{{this.productImage}}" class="card-img-top" alt="{{this.name}}">
+                </a>
+            <div class="card-body">
+                 <a href="detailsbook/{{this.slug}}"></a>
+                <h5 class="card-title" style="text-align: center ; color:red;font-weight: bold;">{{this.price}}</h5>
+                <p class="card-text"style="text-align: center;">{{this.productDescription}}</p>
+                <a href="#" class="btn btn-primary" >Mua sản phẩm</a>
+            </div>
+        </div>
+         </div>
+         {{/each}}
+    </div>
+   </div>
+    {{> footer}}

@@ -1,0 +1,89 @@
+              <hr>
+            <form class="p-4 border rounded-3 bg-light" id="form-register">
+            <br>
+            <br>
+                <h2 class="text-center mb-4 mt-20 fs-6">ĐĂNG KÝ</h2>
+                <br>
+                <div class="mb-3">
+                    <label for="username" class="form-label"></label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập" >
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label"></label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" >
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label"></label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" >
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label"></label>
+                    <input type="phone" class="form-control" id="phone" name="phone" placeholder="Số điện thoại" >
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
+                {{!-- <div class="mt-3 text-center">
+                    <a href="/" class="btn btn-secondary">Đăng nhập</a>
+                </div> --}}
+            </form>
+            <hr>
+   <script>
+    $(document).ready(function () {
+        $('#form-register').submit(function(event){
+            event.preventDefault();
+
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var email = $("#email").val();
+            var phone = $("#phone").val();
+
+            if(!username || !password || !email || !phone){
+                Swal.fire({
+                    title: "vui long dien day du thong tin ",
+                    icon: "error"
+                    });
+                return;
+            }
+      
+        var phonePattern = /^[0-9]+$/;
+        if(!phonePattern.test(phone)){
+           Swal.fire({
+                    title: "so dien thoai khong hop le vuot muc dung",
+                    icon: "error",
+                    });
+            return;
+        }
+
+              $.ajax({
+                url: "/created",  // register
+                method: "POST",
+                data: {
+                       username : $('#username').val(),
+                       password : $('#password').val(),
+                       email : $('#email').val(),
+                       phone: $('#phone').val()
+                },
+            success: function(response) {
+                if (response.message == 'Đăng ký thành công ') {
+                    Swal.fire({
+                        title: response.message,
+                        icon: "success",
+                        text: "Bấm để chuyển sang trang đăng nhập" ,
+                    }).then((result) => {
+                        if (result.isConfirmed){
+                            window.location.href = "/login";
+                            }
+                        })
+                    }else {
+                    Swal.fire({
+                    title: response.message,
+                    icon: "error",
+                    });
+                }
+            },
+                error: function(){
+                    alert("Đã xảy ra lỗi  trong quá trình");
+                }
+            });
+        });
+    });
+</script>
