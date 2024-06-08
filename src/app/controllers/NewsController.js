@@ -1,5 +1,9 @@
 
 class NewsController {
+
+    jumtoPage(req, res, next) {
+        res.render(req.parmas.page)
+    }
     async index(req, res, next) {
         res.render('user/giaodien');
         // try {

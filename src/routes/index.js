@@ -6,7 +6,7 @@ const bookRouter = require('./detailsbook');
 function route(app){
 app.use('/', newsRouter);
 app.use('/', userRouter);
-app.use('/', adminRouter);
+app.use('/admin', adminRouter);
 app.use('/detailsbook', bookRouter);
 }
 

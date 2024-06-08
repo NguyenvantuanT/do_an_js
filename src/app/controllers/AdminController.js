@@ -1,4 +1,4 @@
-
+const { mongooseToObject } = require('../../util/mongoose')
 const Book = require('../models/Book'); // thêm models book vao
 class AdminController {
     //GET/ admin
@@ -28,8 +28,21 @@ class AdminController {
 
 
 
-    updatesanpham(req,res,next) {
-        res.render('admin/themsanpham')
+    updatesanpham(req, res, next) {
+        Book.findById(req.params.id)
+            .then(book => res.render('admin/suasanpham', {
+                book: mongooseToObject(book)
+            }))
+            .catch(next);
+
+    }
+
+
+    saveUpdatesanpham(req, res, next) {
+        Book.updateOne({ _id: req.params.id }, req.body)
+            .then(() => res.render('admin/suasanpham'))
+            .catch(next);
+
     }
 }
 module.exports = new AdminController();
