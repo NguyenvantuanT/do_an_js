@@ -1,27 +1,28 @@
- <!--Sản phẩm   row: chua nhieu san pham 
+<!--Sản phẩm   row: chua nhieu san pham 
  -->
- {{> header}}
- <br>
- <br>
- <br>
- <br>
-   <div class="mt-4 ">
-    <div class="row">    
+{{> header}}
+
+
+
+
+<!--Sản phẩm-->
+<section class="products" id="products">
+    <div class="heading">
+        <br>
+        <h2>Sản phẩm</h2>
+    </div>
+    <!--container-->
+    <div class="products-container">
         {{#each Books}}
-         <div class="col-sm-6 col-lg-4">
-            <div class="card" >
-                <a href="detailsbook/{{this.slug}}">
-                 <img src="{{this.productImage}}" class="card-img-top" alt="{{this.name}}">
-                </a>
-            <div class="card-body">
-                 <a href="detailsbook/{{this.slug}}"></a>
-                <h5 class="card-title" style="text-align: center ; color:red;font-weight: bold;">{{this.price}}</h5>
-                <p class="card-text"style="text-align: center;">{{this.productDescription}}</p>
-                <a href="#" class="btn btn-primary" >Mua sản phẩm</a>
+        <div class="box">
+            <img src="{{this.productImage}}" alt="">
+            <h3>{{this.name}}</h3>
+            <div class="content">
+                <span>{{this.price}}</span>
+                <a href="./chitietsp.html">Thêm vào giỏ hàng</a>
             </div>
         </div>
-         </div>
-         {{/each}}
+        {{/each}}
     </div>
-   </div>
-    {{> footer}}
+</section>
+{{> footer}}

@@ -27,16 +27,13 @@ section {
   padding: 50px 100px; }
 
 img {
-  width: 50%; }
+  width: 100%; }
 
 body {
   color: var(--text-color); }
 
 header {
-  position: fixed;
   width: 100%;
-  top: 0;
-  right: 0;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
@@ -324,7 +321,6 @@ header {
 form {
   /* background: rgba(255, 255, 255, 0.3); */
   /* border-radius: 20px; */
- 
   /* backdrop-filter: blur(10px);
   box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -336,8 +332,7 @@ form {
   border-top: 1px solid rgba(255, 255, 255, 0.3); */
   /* box-sizing: border-box; */
   padding: 100px;
-  margin-left: 210px; 
-}
+  margin-left: 210px; }
 
 form h2 {
   font-size: 1.5rem;
@@ -487,7 +482,8 @@ h4 {
   border-bottom: 1px solid #ddd;
   /* border: none; */ }
 
-.cart span, sub {
+.cart span,
+sub {
   font-weight: 500; }
 
 .cart table {
@@ -495,7 +491,8 @@ h4 {
   border-collapse: collapse;
   border: none; }
 
-.cart th, .cart td {
+.cart th,
+.cart td {
   font-size: 18px;
   border: 1px solid #ddd;
   padding: 10px;
