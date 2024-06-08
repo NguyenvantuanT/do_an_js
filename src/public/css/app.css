@@ -322,20 +322,22 @@ header {
   left: 50%; }
 
 form {
-  background: rgba(255, 255, 255, 0.3);
-  padding: 3em;
-  border-radius: 20px;
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
+  /* background: rgba(255, 255, 255, 0.3); */
+  /* border-radius: 20px; */
+ 
+  /* backdrop-filter: blur(10px);
   box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
   text-align: center;
   position: relative;
   transition: all 0.2s ease-in-out;
   width: 100%;
-  max-width: 400px;
-  box-sizing: border-box;
-  margin-left: 510px; }
+  max-width: 400px; */
+  /* border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3); */
+  /* box-sizing: border-box; */
+  padding: 100px;
+  margin-left: 210px; 
+}
 
 form h2 {
   font-size: 1.5rem;

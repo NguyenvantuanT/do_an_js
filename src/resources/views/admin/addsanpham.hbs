@@ -1,8 +1,9 @@
 {{> headerAdmin}}
 
 <div class="content">
-    <div id="addProductForm" style="display: none; position: absolute; top: 50px; left: 0; right: 0; margin: auto; z-index: 999;">
-        <form id="productForm" style="background: #ccc; max-width: 720px; margin-right: 20px;">
+    <div id="addProductForm"
+        style="display: none; position: absolute; top: 50px; left: 0; right: 0; margin: auto; z-index: 999;">
+        <form id="productForm" style=" max-width: 720px; margin-right: 20px;">
             <div class="form-group">
                 <h2 style="text-align: center;">Thêm Sản Phẩm Mới</h2>
                 <label for="name">Tên Sản Phẩm:</label>
@@ -21,11 +22,13 @@
                 <textarea class="form-control" id="productDescription" name="productDescription"></textarea>
             </div>
             <button type="submit" style="margin-top: 8px;" class="btn btn-primary">Thêm</button>
-            <button type="button" style="margin-top: 8px;" class="btn btn-secondary" onclick="hideAddProductForm()">Đóng</button>
+            <button type="button" style="margin-top: 8px;" class="btn btn-secondary"
+                onclick="hideAddProductForm()">Đóng</button>
         </form>
     </div>
 
     <div class="top-sp">
+        <a href=""></a>
         <button type="button" class="btn btn-primary" onclick="showAddProductForm()">
             Thêm Sản Phẩm
         </button>
@@ -44,10 +47,10 @@
                     <th style="width: 62px">Actions</th>
                 </tr>
             </thead>
-             {{#each Books}}
+            {{#each Books}}
             <tbody id="myTable">
                 <tr>
-                    <tr class="product-row">   
+                <tr class="product-row">
                     <td class="STT"></td>
                     <td>{{this.name}}</td>
                     <td>{{this.price}}</td>
@@ -55,11 +58,15 @@
                     <td>{{this.productDescription}}</td>
                     <td>
                         <button class="btn btn-danger" onclick="deleteProduct(this)">Xóa</button>
-                        <button class="btn btn-primary" onclick="editProduct(this)" style="margin-top: 6px;">Sửa</button>
+                        <a href="/admin/update">
+                            <button class="btn btn-primary" onclick="editProduct(this)"
+                                style="margin-top: 6px;">Sửa</button>
+                        </a>
+
                     </td>
                 </tr>
             </tbody>
-              {{/each}}
+            {{/each}}
         </table>
     </div>
 </div>
@@ -79,12 +86,12 @@
     }
     //phan tang STT
     var stt = 1;
-   $('.product-row').each(function() {
-    $(this).find('.STT').text(stt++);
-  });
-////phan them
+    $('.product-row').each(function () {
+        $(this).find('.STT').text(stt++);
+    });
+    ////phan them
     $(document).ready(function () {
-        $("#productForm").submit(function(event){
+        $("#productForm").submit(function (event) {
             event.preventDefault();
 
             var name = $("#name").val();
@@ -99,13 +106,13 @@
                 });
                 return;
             }
-           if (!/^[0-9]+$/.test(price)) {
-            Swal.fire({
-            title: "Giá phải là một số từ 0 đến 9!",
-            icon: "error"
-    });
-    return;
-}
+            if (!/^[0-9]+$/.test(price)) {
+                Swal.fire({
+                    title: "Giá phải là một số từ 0 đến 9!",
+                    icon: "error"
+                });
+                return;
+            }
 
             $.ajax({
                 url: "/admin/added",
@@ -116,7 +123,7 @@
                     productImage: $('#productImage').val(),
                     productDescription: $('#productDescription').val()
                 },
-                success: function(response) {
+                success: function (response) {
                     if (response.message == 'Thêm thành công') {
                         Swal.fire({
                             title: response.message,
@@ -133,8 +140,8 @@
                         });
                     }
                 },
-                error: function(){
-                   alert("đã xảy ra lỗi trong quá trình thêm");
+                error: function () {
+                    alert("đã xảy ra lỗi trong quá trình thêm");
                 }
             });
         });
