@@ -7,4 +7,5 @@ router.get('/addsanpham', adminController.addsanpham);
 router.post('/added', adminController.added);
 router.get('/update/:id', adminController.updatesanpham);
 router.put('/saveUpdate/:id', adminController.saveUpdatesanpham);
+router.delete('/delete/:id', adminController.deletesanpham);
 module.exports = router;

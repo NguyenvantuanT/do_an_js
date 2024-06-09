@@ -378,10 +378,9 @@ header {
   left: 50%;
 }
 
-form {
+// form {
   /* background: rgba(255, 255, 255, 0.3); */
   /* border-radius: 20px; */
- 
   /* backdrop-filter: blur(10px);
   box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -392,10 +391,32 @@ form {
   /* border-left: 1px solid rgba(255, 255, 255, 0.3);
   border-top: 1px solid rgba(255, 255, 255, 0.3); */
   /* box-sizing: border-box; */
+  // padding: 100px;
+  // margin-left: 210px;
+// }
+
+// fix css
+#form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Chiều cao toàn bộ khung nhìn */
+  background-color: rgba(0, 0, 0, 0.1); /* Tùy chọn: Nền bán trong suốt */
+}
+
+#form-login {
+  background-color: #f8f9fa; /* Màu nền form */
+  padding: 20px; /* Khoảng cách bên trong */
+  border-radius: 8px; /* Bo góc */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bóng */
+}
+
+#form-sua {
   padding: 100px;
   margin-left: 210px;
 }
 
+// 
 form h2 {
   font-size: 1.5rem;
   color: #0e0e0e;
