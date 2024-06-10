@@ -4,17 +4,8 @@ const mongoose = require('mongoose');
 const {engine} = require('express-handlebars')
 const methodOverride = require('method-override')
 const morgan =  require('morgan')
-const session = require('express-session');
 
 const app = express()
-
-app.use(session({
-  secret: 'your-secret-key',
-  resave: false,
-  saveUninitialized: true
-}));
-
-
 
 const port = 3000
 app.use(methodOverride('_method'))

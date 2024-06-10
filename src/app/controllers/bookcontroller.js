@@ -13,29 +13,42 @@ class bookcontroller {
             .catch(next);
     }
 
-    async appToCart(req, res, nexr) {
-        const productId = req.body.productId;
-        const quantity = req.body.quantity || 1;
+    async appToCart(req, res) {
+        const { id } = req.params;
+        const { quantity } = req.body;
+        const book = await Book.findById(id);
+        try {
+            if (!book) {
+                return res.status(404).json({ message: 'Sách không tồn tại' });
+            }
+            let cart = await Cart.findOne();
 
-        const product = await Product.findById(productId);
-        if (!product) {
-            return res.status(404).json({ message: 'Product not found' });
+            if (!cart) {
+                cart = new Cart({ items: [], totalPrice: 0 });
+            }
+
+            const existingItemIndex = cart.items.findIndex(item => item.bookId === id);
+
+            if (existingItemIndex !== -1) {
+                cart.items[existingItemIndex].quantity += parseInt(quantity, 10);
+            } else {
+                cart.items.push({
+                    bookId: book._id,
+                    name: book.name,
+                    quantity: parseInt(quantity, 10),
+                    price: book.price,
+                    productImage: book.productImage
+                });
+            }
+
+            cart.totalPrice += parseInt(quantity, 10) * book.price;
+
+            await cart.save();
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Lỗi khi thêm sản phẩm vào giỏ hàng' });
         }
 
-        let cart = await Cart.findOne({ sessionId: req.session.id });
-        if (!cart) {
-            cart = new Cart({ sessionId: req.session.id, items: [] });
-        }
-
-        const existingItem = cart.items.find(item => item.product.toString() === productId);
-        if (existingItem) {
-            existingItem.quantity += quantity;
-        } else {
-            cart.items.push({ product: productId, quantity });
-        }
-
-        await cart.save();
-        res.json(cart);
     }
 
 

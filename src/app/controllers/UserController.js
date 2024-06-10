@@ -1,10 +1,15 @@
 const User = require('../models/User');
-const Book = require('../models/Book');  // tuong tac models
+const Book = require('../models/Book');
+const Cart = require('../models/Cart'); // tuong tac models
 const jwt = require('jsonwebtoken');
-const { mutipleMongooseToObject } = require('../../util/mongoose');
+const { mutipleMongooseToObject, mongooseToObject } = require('../../util/mongoose');
 
 class UserController {
 
+
+  show(req,res){
+    res.render('client/indexClient')
+  }
   //SEARCH
   async search(req, res) {
     let { query } = req.query;
@@ -39,7 +44,7 @@ class UserController {
         } else if (!userByUsername && !userByEmail) {
           const newUser = new User({ username: username, password: password, email: email, phone: phone, role: "user" });
           newUser.save();
-          return res.json({ message: 'success' });
+          return res.json({ message: 'Đăng ký thành công' });
         }
       })
       .catch(error => {
@@ -111,9 +116,38 @@ class UserController {
   }
 
 
-  cart(req, res, next) {
-    const cart = req.session.cart || [];
-    res.render('client/cart', { cart });
+  async cart(req, res, next) {
+    const cart = await Cart.findOne().populate('items.bookId');
+    res.render('client/cart', { cart: mongooseToObject(cart) });
+  }
+
+
+  async deleteItemCart(req, res, next) {
+    const { id } = req.params;
+    try {
+      // Tìm giỏ hàng trong cơ sở dữ liệu
+      const cart = await Cart.findOne();
+      // Tìm vị trí của cuốn sách trong giỏ hàng
+      const index = cart.items.findIndex(item => item.bookId === id);
+
+      // Nếu không tìm thấy cuốn sách trong giỏ hàng, trả về lỗi 404
+      if (index === -1) {
+        return res.status(404).json({ message: 'Book not found in cart' });
+      }
+
+      // Xóa cuốn sách khỏi giỏ hàng
+      cart.items.splice(index, 1);
+
+      // Lưu lại giỏ hàng mới sau khi xóa
+      await cart.save();
+
+      // Trả về thông báo thành công
+      return res.status(200).json({ message: 'Book removed from cart successfully' });
+    } catch (error) {
+      // Xử lý lỗi nếu có
+      console.error('Error removing book from cart:', error);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
   }
 }
 module.exports = new UserController();

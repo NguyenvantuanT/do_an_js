@@ -1,10 +1,10 @@
 const newsRouter = require('./news');
-const userRouter = require('./User');  //kết nối user của router
+const userRouter = require('./User'); 
 const adminRouter = require('./admin');
 const bookRouter = require('./detailsbook');
 
 function route(app){
-app.use('/', newsRouter);
+
 app.use('/', userRouter);
 app.use('/admin', adminRouter);
 app.use('/book', bookRouter);

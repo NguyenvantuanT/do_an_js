@@ -1,3 +1,4 @@
+{{> header1}}
 <div id="form-container" class="d-flex justify-content-center align-items-center" style="height: 100vh;">
         <form class="p-4 border rounded-3 bg-light" id="form-register">
             <h2 class="text-center mb-4 fs-6">ĐĂNG KÝ</h2>
@@ -20,6 +21,7 @@
             <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
         </form>
     </div>
+    {{> footer}}
     <script>
         $(document).ready(function () {
             $('#form-register').submit(function (event) {
@@ -60,10 +62,10 @@
                         if (response.message == 'Đăng ký thành công') {
                             Swal.fire({
                                 title: response.message,
-                                icon: "success",
+                                icon: "Success",
                                 text: "Bấm để chuyển sang trang đăng nhập",
                             }).then((result) => {
-                                if (result.isConfirmed) {
+if (result.isConfirmed) {
                                     window.location.href = "/login";
                                 }
                             });
