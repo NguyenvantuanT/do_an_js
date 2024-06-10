@@ -7,7 +7,7 @@ function route(app){
 app.use('/', newsRouter);
 app.use('/', userRouter);
 app.use('/admin', adminRouter);
-app.use('/detailsbook', bookRouter);
+app.use('/book', bookRouter);
 }
 
 module.exports= route;

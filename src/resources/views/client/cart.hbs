@@ -1,0 +1,9 @@
+{{> header}}
+<h2>Your Shopping Cart</h2>
+<ul>
+  {{#each cart.items}}
+    <li>{{this.productName}} - {{this.quantity}} x {{this.productPrice}}.000đ</li>
+  {{/each}}
+</ul>
+{{!-- <p>Total: {{calculateTotal cart.items}}</p> --}}
+{{> footer}}

@@ -7,17 +7,17 @@ class UserController {
 
   //SEARCH
   async search(req, res) {
-    let  { query } = req.query;
+    let { query } = req.query;
     query = query.toLowerCase();
-    try { 
-        // Tìm kiếm các mục trong cơ sở dữ liệu dựa trên query trong trường 'name'
-        const searchResults = await Book.find({ name: { $regex: query, $options: 'i' } });
-        res.json(searchResults);
+    try {
+      // Tìm kiếm các mục trong cơ sở dữ liệu dựa trên query trong trường 'name'
+      const searchResults = await Book.find({ name: { $regex: query, $options: 'i' } });
+      res.json(searchResults);
     } catch (error) {
-        console.error('Error searching:', error);
-        res.status(500).json({ message: 'Internal server error' });
+      console.error('Error searching:', error);
+      res.status(500).json({ message: 'Internal server error' });
     }
-}
+  }
 
 
   //GET/ register
@@ -108,6 +108,12 @@ class UserController {
       })
       .catch(next);
     // res.render('client/indexClient')
+  }
+
+
+  cart(req, res, next) {
+    const cart = req.session.cart || [];
+    res.render('client/cart', { cart });
   }
 }
 module.exports = new UserController();

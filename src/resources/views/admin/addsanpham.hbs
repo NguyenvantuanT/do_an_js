@@ -142,7 +142,7 @@
     });
     ////phan them
     $(document).ready(function () {
-        $("#productForm").submit(function (event) {
+        $("#form-sua").submit(function (event) {
             event.preventDefault();
 
             var name = $("#name").val();
@@ -178,7 +178,7 @@
                     if (response.message == 'Thêm thành công') {
                         Swal.fire({
                             title: response.message,
-                            icon: "success",
+                            icon: "Success",
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.location.href = "/admin/addsanpham";

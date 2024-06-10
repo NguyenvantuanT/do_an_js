@@ -23,7 +23,7 @@ class AdminController {
         const { name, price, productImage, productDescription } = req.body;
         const newBook = new Book({ name: name, price: price, productImage: productImage, productDescription: productDescription });
         newBook.save();
-        return res.json({ message: 'Thêm thành công ' });
+        return res.json({ message: 'Thêm thành công' });
     }
 
 
