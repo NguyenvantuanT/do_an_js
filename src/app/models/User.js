@@ -32,4 +32,3 @@ const UserSchema = new Schema({
     }
 }, { timestamps: true }); // Thêm timestamps để tự động thêm createdAt và updatedAt
 module.exports = mongoose.model('User', UserSchema);
-
